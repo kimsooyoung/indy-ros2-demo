@@ -124,6 +124,8 @@ class KeyboardControl(Node):
         self.key = 0x00
         self.teleop_status = TELE_STOP
 
+        print(f"JOINT_KEY: {JOINT_KEY}")
+
         self.reader = KeyboardReader()
 
     def indy_service(self, data):
@@ -172,6 +174,7 @@ class KeyboardControl(Node):
         try:
             while True:
                 self.key = self.reader.read_one()
+                print(f"self.key: {self.key}")
 
                 twist_msg = TwistStamped()
                 joint_msg = JointJog()
@@ -214,32 +217,32 @@ class KeyboardControl(Node):
                     if self.isValid():
                         twist_msg.twist.linear.y = self.task_linear_vel
                         publish_twist = True
-                        # print("MOVE LEFT")
+                        print("MOVE LEFT")
                 elif self.key == chr(KEYCODE_RIGHT):
                     if self.isValid():
                         twist_msg.twist.linear.y = -self.task_linear_vel
                         publish_twist = True
-                        # print("MOVE RIGHT")
+                        print("MOVE RIGHT")
                 elif self.key == chr(KEYCODE_UP):
                     if self.isValid():
                         twist_msg.twist.linear.x = self.task_linear_vel
                         publish_twist = True
-                        # print("MOVE FORWARD")
+                        print("MOVE FORWARD")
                 elif self.key == chr(KEYCODE_DOWN):
                     if self.isValid():
                         twist_msg.twist.linear.x = -self.task_linear_vel
                         publish_twist = True
-                        # print("MOVE BACKWARD")
+                        print("MOVE BACKWARD")
                 elif self.key == chr(KEYCODE_PERIOD):
                     if self.isValid():
                         twist_msg.twist.linear.z = -self.task_linear_vel
                         publish_twist = True
-                        # print("MOVE DOWN")
+                        print("MOVE DOWN")
                 elif self.key == chr(KEYCODE_SEMICOLON):
                     if self.isValid():
                         twist_msg.twist.linear.z = self.task_linear_vel
                         publish_twist = True
-                        # print("MOVE UP")
+                        print("MOVE UP")
 
                 # -------------------------
                 elif self.key == chr(KEYCODE_N):
