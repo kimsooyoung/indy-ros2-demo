@@ -116,8 +116,8 @@ def launch_setup(context, *args, **kwargs):
             robot_description_semantic,
             robot_description_kinematics,
             ompl_planning_pipeline_config,
-            trajectory_execution,
             moveit_controllers,
+            trajectory_execution,
             planning_scene_monitor_parameters,
             {"use_sim_time": use_sim_time},
         ],
@@ -191,7 +191,6 @@ def launch_setup(context, *args, **kwargs):
         # nodes_to_start = [servo_node, rviz_node]
     else:
         nodes_to_start = [move_group_node, rviz_node]
-
 
     return nodes_to_start
 
